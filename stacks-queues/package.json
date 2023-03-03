@@ -1,8 +1,8 @@
 {
   "name": "exercises",
   "version": "1.0.0",
-  "description": "",
-  "main": "searches.js",
+  "description": "Exercises for stacks and queues",
+  "main": "stacksAndQueues.js",
   "scripts": {
     "test": "mocha"
   },
@@ -10,6 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "chai": "^4.2.0",
-    "mocha": "^6.0.2"
+    "mocha": "^5.2.0"
   }
 }
