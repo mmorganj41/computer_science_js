@@ -34,7 +34,6 @@ function bracketMatching(input){
   const stack = new Stack;
 
   for (const char of removedNonBrackets) {
-    console.log(char);
     if (Object.values(bracketDict).includes(char)) {
       if (bracketDict[stack.peek()] === char) {
         stack.pop();
@@ -72,14 +71,49 @@ class priorityQueue{
         // the lowest priority number should be the head node
         // the priorities should remain in order
         // if two nodes have the same priority, put the new one first
+        const node = new Node(data, priority);
+
+        let previousNode = this;
+        let currentNode = this.next;
+
+        while (currentNode) {
+          if (priority <= currentNode.priority) break;
+          previousNode = currentNode;
+          currentNode = currentNode.next;
+        }
+
+        node.next = currentNode;
+        previousNode.next = node;
+
     }
     peek(){
         // return the highest priority node in the queue
+        return this.head;
     }
     dequeue(){
         // remove and return the highest priority node in the queue
+        const node = this.next;
+        this.next = node.next;
+        node.next = null;
+
+        return node;
+    }
+    get next() {
+      return this.head;
+    }
+    set next(node) {
+      this.head = node;
     }
 }
+
+    const pQ = new priorityQueue();
+    pQ.enqueue("Alpha", 1);
+    console.log(pQ);
+    pQ.enqueue("Alpha2", 1);
+    console.log(pQ);
+    pQ.enqueue("Omega", 3);
+    console.log(pQ);
+
 
 module.exports = {
     bracketMatching,
