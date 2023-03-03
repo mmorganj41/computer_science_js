@@ -23,9 +23,35 @@ class Stack {
 // you must use a Stack in your implementation of this function
 // refer to the bracket matching readMe.md for more details
 function bracketMatching(input){
+  const removedNonBrackets = input.replace(/[^\(\)\[\]\{\}]/g, '');
 
+  const bracketDict = {
+    '[': ']',
+    '(': ')',
+    '{': '}',
+  }
+
+  const stack = new Stack;
+
+  for (const char of removedNonBrackets) {
+    console.log(char);
+    if (Object.values(bracketDict).includes(char)) {
+      if (bracketDict[stack.peek()] === char) {
+        stack.pop();
+      } else {
+        return false;
+      }
+    } else {
+      stack.push(char);
+    }
+  }
+
+  if (stack.isEmpty()) {
+    return true;
+  } else {
+    return false;
+  }
 }
-
 
 class Node{
     constructor(data, priority){
