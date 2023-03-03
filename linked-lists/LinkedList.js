@@ -65,7 +65,7 @@ class LinkedList{
         newNode.next = currentNode.next;
         currentNode.next = newNode;
 
-
+        return newNode;
         // insert a new node into the list with the given data
         // place it after X nodes in the list
         // if X exceeds the bounds of the list, put the node at the end
@@ -86,7 +86,7 @@ class LinkedList{
         // return the node that has been removed
     }
     search(data){
-        let currentNode=this
+        let currentNode = this;
         let i = 0;
         while (currentNode.next) {
             currentNode = currentNode.next;
@@ -101,6 +101,27 @@ class LinkedList{
     }
     sort(){
         // sort the Linked List in ascending order of data values
+        let currentNode = this.next;
+        let startingIndex = 0;
+        let i = startingIndex;
+
+        while (currentNode.next) {
+            let min = {value: currentNode.data, location: i};
+            let searchedNode = currentNode.next;
+
+            while (searchedNode) {
+                i++
+
+                if (searchedNode.data < min.value) min.value = searchedNode.data, min.location = i;
+                
+                searchedNode = searchedNode.next;
+            }
+
+            const movedNode = this.insertAt(startingIndex, (this.removeAt(min.location).data));
+            currentNode = movedNode.next;
+            startingIndex++
+            i = startingIndex;            
+        }
     }
     //  Helper functions to avoid calling this.head vs next
     get next() {
