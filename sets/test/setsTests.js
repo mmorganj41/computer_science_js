@@ -1,4 +1,5 @@
-const expect = chai.expect;
+const expect = require('chai').expect;
+
 const Set = require('../sets.js');
 
 describe("Set", () => {

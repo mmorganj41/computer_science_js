@@ -37,4 +37,4 @@ class Set {
     }
 }
 
-modules.exports = Set;
+module.exports = Set;
